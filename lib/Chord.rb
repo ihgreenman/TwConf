@@ -158,6 +158,8 @@ class Chord
     private
 
     def parseBits(bits)
+        throw "Bad chord bits #{bits}, no buttons pressed" if bits <= 0
+
         results = []
 
         @@buttons.each do |button|

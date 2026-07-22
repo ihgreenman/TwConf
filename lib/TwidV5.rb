@@ -85,7 +85,7 @@ class TwidV5
             end
 
             @version = binary.getU8(0)
-            puts "Bad version #{version}" if version != 5
+            throw "Unsupported version #{@version}, only version 5 is supported" if @version != 5
 
             @enableKeyRepeat     = binary.getBit(1, 0) == 1
             @enableDirectKeyMode = binary.getBit(1, 1) == 1
@@ -405,13 +405,11 @@ class TwidV5
     end
 
     def load_csv(filename)
+        throw "File not found: #{filename}" unless File.exist? filename
+
         conf = Spreadsheet.new
-        if File.exist? filename
-            File.open(filename, 'r') do |file|
-                conf.from_csv(file.read)
-            end
-        else
-            conf.from_csv(filename)
+        File.open(filename, 'r') do |file|
+            conf.from_csv(file.read)
         end
 
         headers = {}
