@@ -136,13 +136,19 @@ class TwidV5
             binary.setBit(15, 0, @hapticFeedbackEnable)
         end
 
+        # Header fields that hold an HID mapping (or nil for "use mouse click"),
+        # represented in JSON/CSV the same way chord HID mappings are: an unparse
+        # string, or nil/empty when unset.
+        HID_FIELDS = Set.new(%w[leftClick middleClick rightClick])
+
         def to_map
             toUse = Set.new(methods.grep(/[a-zA-Z]+=/).map { |k| k.to_s[0..-2] })
             toUse.delete 'numChords'
 
             result = {}
             toUse.each do |k|
-                result[k] = send(k.to_sym) if k
+                value = send(k.to_sym)
+                result[k] = HID_FIELDS.member?(k) ? value&.unparse : value
             end
             result
         end
@@ -161,13 +167,22 @@ class TwidV5
             end
         end
 
-        def from_map(map)
+        def extractHID(value, keyboard)
+            return nil if value.nil? or (value.is_a?(String) and value.empty?)
+
+            HID.parse(keyboard, value.to_s)
+        end
+
+        def from_map(map, keyboard)
             toUse = Set.new(methods.grep(/[a-zA-Z]+=/).map { |k| k.to_s[0..-2] })
             toUse.delete 'numChords'
 
             map.each do |k, v|
+                next unless toUse.member? k
+
                 key = "#{k}="
-                send(key.to_sym, extractValue(v)) if toUse.member? k
+                value = HID_FIELDS.member?(k) ? extractHID(v, keyboard) : extractValue(v)
+                send(key.to_sym, value)
             end
         end
 
@@ -374,7 +389,7 @@ class TwidV5
 
     def load_json(filename)
         conf = parse_json(filename)
-        @header.from_map conf['header'] if conf.member? 'header'
+        @header.from_map conf['header'], @keyboard if conf.member? 'header'
 
         return unless conf.member? 'chords'
 
@@ -429,7 +444,7 @@ class TwidV5
             end
         end
 
-        @header.from_map(headers)
+        @header.from_map(headers, @keyboard)
         chords.each do |k, v|
             chord = Chord.new k
             hid = HID.parse @keyboard, v
