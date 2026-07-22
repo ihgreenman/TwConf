@@ -54,7 +54,7 @@ class TwidV5
 
         # Byte 15, bit field
         # Bit 0
-        attr_reader :hapticFeedbackEnable
+        attr_accessor :hapticFeedbackEnable
 
         def initialize()
             @version = 5
@@ -95,6 +95,8 @@ class TwidV5
             @enableStickShiftKey = binary.getBit(1, 7) == 1
 
             @numChords = binary.getU16(2)
+            throw "Bad numChords #{@numChords}, must be between 1 and 1020" if @numChords < 1 or @numChords > 1020
+
             @sleepTimeout = binary.getU16(4)
             @leftClick = getHIDOrNil(binary, 6, keyboard, strings)
             @middleClick = getHIDOrNil(binary, 8, keyboard, strings)
@@ -412,6 +414,17 @@ class TwidV5
                     chord = conf.get(i, 0)
                     hid = conf.get(i + 1, 0)
                     chords[chord] = hid unless chord.nil? or chord.empty?
+                end
+            when 'chords'
+                prefix = conf.get(1, 0)
+                unless prefix.nil? or prefix.empty?
+                    { 2 => '0', 3 => 'L', 4 => 'M', 5 => 'R' }.each do |i, suffix|
+                        hid = conf.get(i, 0)
+                        unless hid.nil? or hid.empty?
+                            chord = "#{prefix[0..-2]}#{suffix}"
+                            chords[chord] = hid
+                        end
+                    end
                 end
             end
         end

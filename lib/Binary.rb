@@ -89,6 +89,7 @@ class Binary
 
     def setU8(offset, value)
         throw 'Bad offset' if offset.negative?
+        throw 'Bad value' if value.negative? or value > 0xff
         handleResize offset + 1
 
         @data[offset] = value & 0xff
@@ -102,6 +103,7 @@ class Binary
 
     def setU16(offset, value)
         throw 'Bad offset' if offset.negative?
+        throw 'Bad value' if value.negative? or value > 0xffff
         handleResize offset + 2
 
         @data[offset]     =  value       & 0xff
@@ -119,6 +121,7 @@ class Binary
 
     def setU32(offset, value)
         throw 'Bad offset' if offset.negative?
+        throw 'Bad value' if value.negative? or value > 0xffffffff
         handleResize offset + 4
 
         @data[offset]     =  value        & 0xff

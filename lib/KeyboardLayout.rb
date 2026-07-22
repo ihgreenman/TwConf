@@ -28,9 +28,9 @@ class KeyboardLayout
 
         details.each_with_index do |value, index|
             if index.zero?
-                @language = value[:Language]
-                @layout = value[:Layout]
-                @name = value[:Name] || "#{@language}_#{@layout}"
+                @language = value['Language']
+                @layout = value['Layout']
+                @name = value['Name'] || "#{@language}_#{@layout}"
             else
                 key = HIDKey.new value
                 @allKeys.push key

@@ -52,18 +52,18 @@ class Chord
 
             details.each do |k, v|
                 case k
-                when Name:
+                when :Name
                     @name = v
-                when bit:
+                when :bit
                     @bit = checkInt(v, 0, 15)
                     @mask = 1 << @bit
-                when Prefix:
+                when :Prefix
                     @prefix = checkString(v.to_s.upcase, %w[N A C S])
                     @prefixOrSide = @prefix
-                when Side:
+                when :Side
                     @side = checkString(v.to_s.upcase, %w[R M L])
                     @prefixOrSide = @side
-                when Row:
+                when :Row
                     @row = checkInt(v, 0, 4)
                 end
             end

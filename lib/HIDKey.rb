@@ -49,24 +49,24 @@ class HIDKey
         details.each do |key, value|
             case key
 
-            when Mod:
+            when 'Mod'
                 @modifier = value.to_i
-                throw 'Bad mod for #{details}' if @modifier < 0 or @modifier > 255
+                throw "Bad mod for #{details}" if @modifier < 0 or @modifier > 255
 
-            when Code:
+            when 'Code'
                 @baseCode = value.to_i
-                throw 'Bad code for #{details}' if @baseCode < 0 or @baseCode > 255
+                throw "Bad code for #{details}" if @baseCode < 0 or @baseCode > 255
 
-            when Name:
+            when 'Name'
                 @names = value.is_a?(Array) ? value : [ value.to_s ]
 
-            when Plain:
+            when 'Plain'
                 @plain = value.to_s
 
-            when Shift:
+            when 'Shift'
                 shiftKey = value.to_s
 
-            when prefername:
+            when 'preferName'
                 preferName = value
             end
         end
@@ -84,10 +84,10 @@ class HIDKey
         unless shiftKey.nil?
             shiftNames = @names.map { |value| "Shift + #{value}" }
             @shifted = HIDKey.new({
-                                    'Mod': SHIFT_CODE | @modifier,
-                                    'Code': @baseCode,
-                                    'Name': shiftNames,
-                                    'Plain': shiftKey
+                                    'Mod' => SHIFT_CODE | @modifier,
+                                    'Code' => @baseCode,
+                                    'Name' => shiftNames,
+                                    'Plain' => shiftKey
                                     })
         end
 
