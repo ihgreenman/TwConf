@@ -1,0 +1,124 @@
+config,disableBluetooth,false
+config,enableDirectKeyMode,false
+config,enableKeyRepeat,true
+config,enableStickNumKey,false
+config,enableStickShiftKey,false
+config,joystickMouseClick,true
+config,keyRepeatDelay,100
+config,leftClick,false
+config,middleClick,false
+config,mouseAcceleration,10
+config,rightClick,false
+config,sleepTimeout,1500
+chord,R000,j
+chord,N R000,1
+chord,M000,f
+chord,N M000,4
+chord,L000,g
+chord,N L000,7
+chord,NA R000,<Key F1>
+chord,NA M000,<Key F5>
+chord,NA L000,<Key F9>
+chord,0R00,k
+chord,N 0R00,2
+chord,RR00,e
+chord,N RR00,<Key Numlock>
+chord,MR00,u
+chord,LR00,/
+chord,NA 0R00,<Key F2>
+chord,0M00,d
+chord,N 0M00,5
+chord,RM00,q
+chord,N RM00,<Key End>
+chord,MM00,o
+chord,LM00,n
+chord,NA 0M00,<Key F6>
+chord,0L00,h
+chord,N 0L00,8
+chord,RL00,{
+chord,N RL00,<Key Insert>
+chord,ML00,m
+chord,LL00,c
+chord,NA 0L00,<Key F10>
+chord,00R0,l
+chord,N 00R0,3
+chord,R0R0,w
+chord,N R0R0,<Key Scroll Lock>
+chord,M0R0,t
+chord,L0R0,w
+chord,NA 00R0,<Key F3>
+chord,0RR0,_
+chord,RRR0,_+
+chord,0MR0,<Key Up>
+chord,0LR0,}
+chord,00M0,s
+chord,N 00M0,6
+chord,R0M0,Q
+chord,M0M0,p
+chord,L0M0,.
+chord,NA 00M0,<Key F7>
+chord,0RM0,(
+chord,0MM0,<Key Left>
+chord,MMM0,()
+chord,0LM0,*
+chord,00L0,<bsp>
+chord,N 00L0,9
+chord,R0L0,!
+chord,N R0L0,<Key Capslock>
+chord,M0L0,","
+chord,L0L0,b
+chord,NA 00L0,<Key F11>
+chord,0RL0,-
+chord,0ML0,<Key Down>
+chord,0LL0,]
+chord,LLL0,-=
+chord,000R,;
+chord,N 000R,~
+chord,R00R,|
+chord,N R00R,<tab>
+chord,M00R,r
+chord,L00R,E
+chord,NA 000R,<Key F4>
+chord,0R0R,+
+chord,RR0R,flv21
+chord,0M0R,<Key Page Up>
+chord,0L0R,<singlequote>
+chord,00RR,<doublequote>
+chord,R0RR,flv31
+chord,0RRR,flv41
+chord,RRRR,gal@gjuoddlmaleism
+chord,00MR,`
+chord,00LR,#
+chord,000M,a
+chord,N 000M,0
+chord,R00M,&
+chord,N R00M,<Key Home>
+chord,M00M,i
+chord,L00M,v
+chord,NA 000M,<Key F8>
+chord,0R0M,)
+chord,0M0M,<Key Right>
+chord,MM0M,kjd
+chord,0L0M,[
+chord,00RM,Z
+chord,00MM,%
+chord,M0MM,flv32
+chord,0MMM,flv42
+chord,MMMM,<esc>
+chord,00LM,$
+chord,000L, 
+chord,N 000L,flvLR
+chord,R00L,@
+chord,M00L,y
+chord,L00L,x
+chord,NA 000L,<Key F12>
+chord,0R0L,=
+chord,0M0L,<Key Page Down>
+chord,0L0L,<bslash>
+chord,LL0L,flv23
+chord,00RL,z
+chord,00ML,^
+chord,00LL,<return>
+chord,L0LL,flv33
+chord,0LLL,flv43
+chord,LLLL,<Key Delete>

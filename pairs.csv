@@ -1,0 +1,52 @@
+chord,R000,h,0R00,t,00R0,n,000R,s
+chord,M000,u,0M00,e,00M0,o,000M,a
+chord,L000,i,0L00,d,00L0,<bsp>,000L,<space>
+,,,,,,,,
+chord,RR00,.,R0R0,",",R00R,|,,
+chord,RM00,<singlequote>,R0M0,<doublequote>,R00M,&,,
+chord,RL00,?,R0L0,!,R00L,@,,
+,,,,,,,,
+chord,MR00,g,M0R0,y,M00R,p,,
+chord,MM00,r,M0M0,l,M00M,c,,
+chord,ML00,m,M0L0,w,M00L,f,,
+,,,,,,,,
+chord,LR00,z,L0R0,<lt>,L00R,>,,
+chord,LM00,b,L0M0,v,L00M,k,,
+chord,LL00,j,L0L0,x,L00L,q,,
+,,,,,,,,
+chord,0RR0,{,0R0R,},,,,
+chord,0RM0,(,0R0M,),,,,
+chord,0RL0,[,0R0L,],,,,
+,,,,,,,,
+chord,0MR0,<Key Up>,0M0R,<Key Page Up>,,,,
+chord,0MM0,<Key Left>,0M0M,<Key Right>,,,,
+chord,0ML0,<Key Down>,0M0L,<Key Page Down>,,,,
+,,,,,,,,
+chord,0LR0,+,0L0R,-,,,,
+chord,0LM0,*,0L0M,/,,,,
+chord,0LL0,=,0L0L,<bslash>,,,,
+,,,,,,,,
+chord,00RR,_,00RM,:,00RL,;,,
+chord,00MR,`,00MM,%,00ML,^,,
+chord,00LR,#,00LM,$,00LL,<return>,,
+,,,,,,,,
+chord,RRR0,{},RR0R,unk21,R0RR,unk31,0RRR,unk41
+chord,MMM0,(),MM0M,the,M0MM,unk32,0MMM,unk42
+chord,LLL0,[],LL0L,unk23,L0LL,unk33,0LLL,unk43
+,,,,,,,,
+chord,RRRR,ian@ihgreenman.com,,,,,,
+chord,MMMM,<esc>,,,,,,
+chord,LLLL,<key delete>,,,,,,
+,,,,,,,,
+chord,N R000,1,N 0R00,2,N 00R0,3,N 000R,~
+chord,N M000,4,N 0M00,5,N 00M0,6,N 000M,0
+chord,N L000,7,N 0L00,8,N 00L0,9,N 000L,unkNP
+,,,,,,,,
+chord,N RR00,<Key Numlock>,N R0R0,<Key Scroll Lock>,N R00R,<tab>,,
+chord,N RM00,<Key End>,,,N R00M,<Key Home>,,
+chord,N RL00,<Key Insert>,N R0L0,<Key CapsLock>,,,,
+,,,,,,,,
+,,,,,,,,
+chord,NA R000,<Key F1>,NA 0R00,<Key F2>,NA 00R0,<Key F3>,NA 000R,<Key F4>
+chord,NA M000,<Key F5>,NA 0M00,<Key F6>,NA 00M0,<Key F7>,NA 000M,<Key F8>
+chord,NA L000,<Key F9>,NA 0L00,<Key F10>,NA 00L0,<Key F11>,NA 000L,<Key F12>

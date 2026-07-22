@@ -1,0 +1,12 @@
+config,disableBluetooth,false
+config,enableDirectKeyMode,false
+config,enableKeyRepeat,true
+config,enableStickNumKey,false
+config,enableStickShiftKey,false
+config,joystickMouseClick,true
+config,keyRepeatDelay,100
+config,leftClick,false
+config,middleClick,false
+config,mouseAcceleration,10
+config,rightClick,false
+config,sleepTimeout,1500
