@@ -24,6 +24,11 @@ class NotifyHash
             (index, value) = @normalizeInputCallback.call(index, value)
         end
 
+        # NOTE: unlike a real Hash, storing `false` here is indistinguishable
+        # from deleting the key, since `if value` treats both as falsy. Not
+        # currently triggered -- the only values ever stored in a NotifyHash
+        # are token objects (always truthy) -- but would need a nil check
+        # instead of a truthiness check if that ever changes.
         if value
             @hash[index] = value
         else
@@ -32,6 +37,11 @@ class NotifyHash
         @modifyCallback.call(index, value)
     end
 
+    # NOTE: unlike a real Hash#each, a zero-arity block raises here instead of
+    # just being called with no arguments. Not currently triggered -- every
+    # caller in this codebase passes a 1- or 2-arity block -- but a drop-in
+    # zero-arg block (e.g. `hash.each { do_something }`) would break here
+    # where it would work on a real Hash.
     def each(&callback)
         throw 'insufficent arguments in callback' if callback.arity == 0
         @hash.each { |k, v| callback.call([k, v]) } if callback.arity == 1

@@ -22,7 +22,7 @@ class Spreadsheet
         end
 
         row = @sheet.max { |a, b| a.length <=> b.length }
-        row.length
+        row.nil? ? 0 : row.length
     end
 
     def dy=(value)

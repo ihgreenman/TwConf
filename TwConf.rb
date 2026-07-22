@@ -16,43 +16,52 @@ require 'KeyboardLayout'
 require 'HID'
 require 'TwidV5'
 
-opts = Options.new
+begin
+    opts = Options.new
 
-if opts.output and File.exist?(opts.output) and not opts.force
-    puts 'Cowardly refusing to overwrite file, use --force to override'
-    exit
-end
-
-config = nil
-
-opts.loadFiles.each do |file|
-    if file.end_with?('.cfg')
-        throw 'Binary file must be first file specified' unless config.nil?
-        config = TwidV5.new(opts.layout, file)
-        next
+    if opts.output and File.exist?(opts.output) and not opts.force
+        puts 'Cowardly refusing to overwrite file, use --force to override'
+        exit
     end
 
-    config = TwidV5.new(opts.layout, nil) if config.nil?
-    config.load(file)
-end
+    config = nil
 
-config.warn opts.warn if opts.warn > 0
+    opts.loadFiles.each do |file|
+        if file.end_with?('.cfg')
+            throw 'Binary file must be first file specified' unless config.nil?
+            config = TwidV5.new(opts.layout, file)
+            next
+        end
 
-exit unless opts.output
-
-if opts.output.downcase.end_with? '.cfg'
-    binary = config.to_binary
-    binary.save opts.output
-end
-
-if opts.output.downcase.end_with? '.json'
-    File.open(opts.output, 'w') do |file|
-        file << config.to_json
+        config = TwidV5.new(opts.layout, nil) if config.nil?
+        config.load(file)
     end
-end
 
-if opts.output.downcase.end_with? '.csv'
-    File.open(opts.output, 'w') do |file|
-        file << config.to_csv(opts.compact)
+    config.warn opts.warn if opts.warn > 0
+
+    exit unless opts.output
+
+    if opts.output.downcase.end_with? '.cfg'
+        binary = config.to_binary
+        binary.save opts.output
     end
+
+    if opts.output.downcase.end_with? '.json'
+        File.open(opts.output, 'w') do |file|
+            file << config.to_json
+        end
+    end
+
+    if opts.output.downcase.end_with? '.csv'
+        File.open(opts.output, 'w') do |file|
+            file << config.to_csv(opts.compact)
+        end
+    end
+rescue UncaughtThrowError => e
+    # The codebase uses `throw` (not `raise`) for validation/parse errors
+    # throughout, with no matching `catch`. This is the one top-level net
+    # that turns those into a clean message instead of an internal-looking
+    # UncaughtThrowError backtrace.
+    warn "Error: #{e.tag}"
+    exit 1
 end

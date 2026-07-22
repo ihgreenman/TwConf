@@ -79,6 +79,19 @@ class Tokenizer
 
             oldLength = current.length
 
+            # NOTE: these two loops don't break after a match, so if two
+            # registered tokens shared a first character AND one were a
+            # strict prefix of the other (e.g. "A" and "AB" both
+            # case-sensitive), matching the shorter one first would mutate
+            # `current`/`upper` mid-`.each`, and the longer token could then
+            # spuriously match again against the leftover remainder within
+            # the same pass -- an order-dependent double-consumption bug.
+            # Not currently triggered: verified against both English_QWERTY
+            # and English_Dvorak's actual token sets, no such prefix
+            # conflicts exist today. This would need to be fixed (longest-
+            # match-wins, with a break) before adding any keyboard layout
+            # whose token names could overlap this way -- e.g. full
+            # internationalization with additional language layouts.
             @byInitialInsensitive[upper[0] || ''].each do |token|
                 if upper.start_with? token
                     upper = upper[token.length..upper.length]
